@@ -39,16 +39,12 @@ module.exports = {
       links: [
         {
           title: "Other classes",
-          items: [
-            {
-              label: "Math for Art and Computer Graphics",
-              to: "https://julesfouchy.github.io/Learn--Math-for-Art-and-Computer-Graphics",
-            },
-            {
-              label: "C++ and Dev Practices",
-              to: "https://julesfouchy.github.io/Learn--Cpp-And-Dev-Practices/",
-            },
-          ],
+          items: user_config.classes
+            .filter((c) => c.name !== user_config.title)
+            .map((c) => ({
+              label: c.name,
+              to: c.url,
+            })),
         },
         {
           title: "Raise an issue!",
