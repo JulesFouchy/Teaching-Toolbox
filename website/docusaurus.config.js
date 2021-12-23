@@ -10,7 +10,7 @@ module.exports = {
   //   const user_config = await get_user_config();
   //   return {
   title: user_config.title,
-  url: `https://${user_config.github_account}.github.io/`,
+  url: `https://${user_config.github_account.toLowerCase()}.github.io/`,
   baseUrl: `/${user_config.repo}/`,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
