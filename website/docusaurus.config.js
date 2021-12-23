@@ -1,10 +1,14 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const user_config = require("../../website.config");
+// const get_user_config = require("../../website.config");
+const user_config = require("../../website.config")();
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+// module.exports = async function configCreatorAsync() {
 module.exports = {
+  //   const user_config = await get_user_config();
+  //   return {
   title: user_config.title,
   url: `https://${user_config.github_account}.github.io/`,
   baseUrl: `/${user_config.repo}/`,
@@ -95,3 +99,4 @@ module.exports = {
   ],
   ...user_config.docusaurus_config,
 };
+// };
