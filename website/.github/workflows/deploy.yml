@@ -18,7 +18,7 @@ jobs:
         with: 
           ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }} 
       - name: Release to GitHub Pages 
-        working-directory: website
+        working-directory: Teaching-Toolbox/website
         env: 
           USE_SSH: true 
           GIT_USER: git 
