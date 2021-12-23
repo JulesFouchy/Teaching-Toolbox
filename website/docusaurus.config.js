@@ -1,17 +1,17 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github')
 const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
+const user_config = require('../../website.config')
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Generative Art',
-  tagline: 'Making 🎨 with 👩‍💻',
-  url: 'https://julesfouchy.github.io/',
-  baseUrl: '/Learn--Math-for-Art-and-Computer-Graphics/',
+  url: `https://${user_config.github_account}.github.io/`,
+  baseUrl: `/${user_config.repo}/`,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'julesfouchy',
-  projectName: 'Learn--Math-for-Art-and-Computer-Graphics',
+  organizationName: user_config.github_account,
+  projectName: 'user_config.repo',
   themeConfig: {
     navbar: {
       title: '',
@@ -20,17 +20,10 @@ module.exports = {
         src: 'img/favicon-32x32.png',
       },
       items: [
+        ...user_config.navbar_items,
         {
-          type: 'doc',
-          docId: 'lessons/introduction',
-          position: 'left',
-          label: 'Lessons',
-        },
-        {to: '/resources', label: 'Resources', position: 'left'},
-        {to: '/inspirations', label: 'Inspirations', position: 'left'},
-        {
-          href:
-              'https://github.com/JulesFouchy/Learn--Math-for-Art-and-Computer-Graphics/issues',
+          href: `https://github.com/${user_config.github_account}/${
+              user_config.repo}/issues`,
           position: 'right',
           className: 'header-issues-link',
           'aria-label': 'GitHub issues',
@@ -122,4 +115,5 @@ module.exports = {
       },
     ],
   ],
+  ...user_config.docusaurus_settings
 };
