@@ -6,12 +6,12 @@ module.exports = {
   title: 'Generative Art',
   tagline: 'Making 🎨 with 👩‍💻',
   url: 'https://julesfouchy.github.io/',
-  baseUrl: '/Learn--Generative-Art/',
+  baseUrl: '/Learn--Math-for-Art-and-Computer-Graphics/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'julesfouchy',
-  projectName: 'Learn--Generative-Art',
+  projectName: 'Learn--Math-for-Art-and-Computer-Graphics',
   themeConfig: {
     navbar: {
       title: '',
@@ -29,13 +29,15 @@ module.exports = {
         {to: '/resources', label: 'Resources', position: 'left'},
         {to: '/inspirations', label: 'Inspirations', position: 'left'},
         {
-          href: 'https://github.com/JulesFouchy/Learn--Generative-Art/issues',
+          href:
+              'https://github.com/JulesFouchy/Learn--Math-for-Art-and-Computer-Graphics/issues',
           position: 'right',
           className: 'header-issues-link',
           'aria-label': 'GitHub issues',
         },
         {
-          href: 'https://github.com/JulesFouchy/Learn--Generative-Art',
+          href:
+              'https://github.com/JulesFouchy/Learn--Math-for-Art-and-Computer-Graphics',
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub repository',
@@ -63,15 +65,15 @@ module.exports = {
           items: [
             {
               label: 'Ask a question',
-              to: 'https://github.com/JulesFouchy/Learn--Generative-Art/issues',
+              to: 'https://github.com/JulesFouchy/Learn--Math-for-Art-and-Computer-Graphics/issues',
             },
             {
               label: 'Report a mistake',
-              to: 'https://github.com/JulesFouchy/Learn--Generative-Art/issues',
+              to: 'https://github.com/JulesFouchy/Learn--Math-for-Art-and-Computer-Graphics/issues',
             },
             {
               label: 'Give me feedback',
-              to: 'https://github.com/JulesFouchy/Learn--Generative-Art/issues',
+              to: 'https://github.com/JulesFouchy/Learn--Math-for-Art-and-Computer-Graphics/issues',
             },
           ],
         },
