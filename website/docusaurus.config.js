@@ -5,6 +5,7 @@ const user_config = require("../../website.config");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
+  title: user_config.title,
   url: `https://${user_config.github_account}.github.io/`,
   baseUrl: `/${user_config.repo}/`,
   onBrokenLinks: "throw",
