@@ -28,13 +28,6 @@ module.exports = {
           className: 'header-issues-link',
           'aria-label': 'GitHub issues',
         },
-        {
-          href:
-              'https://github.com/JulesFouchy/Learn--Math-for-Art-and-Computer-Graphics',
-          position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
-        },
       ],
     },
     footer: {
