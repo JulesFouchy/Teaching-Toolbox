@@ -11,7 +11,7 @@ module.exports = {
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: user_config.github_account,
-  projectName: 'user_config.repo',
+  projectName: user_config.repo,
   themeConfig: {
     navbar: {
       title: '',
