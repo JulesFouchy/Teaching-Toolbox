@@ -1,9 +1,9 @@
 // @ts-check
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const lightCodeTheme = require("prism-react-renderer/themes/github")
+const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 
-const user_config = require("../../website.config")();
+const user_config = require("../../website.config")()
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -102,6 +102,6 @@ const config = {
   ],
 
   ...user_config.docusaurus_config,
-};
+}
 
-module.exports = config;
+module.exports = config
