@@ -26,8 +26,8 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: user_config.path_to_docs || "../../docs",
-          routeBasePath: "docs",
+          path: user_config.path_to_content || "../../content",
+          routeBasePath: "/",
           sidebarPath: require.resolve("../../sidebars.js"),
         },
         theme: {
