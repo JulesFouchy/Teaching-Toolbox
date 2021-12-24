@@ -1,3 +1,6 @@
+## sidebars.js
+
+In here you describe how your sidebars are generated. Refer to [the documentation](https://docusaurus.io/docs/sidebar).
 
 ## static
 
