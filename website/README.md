@@ -1,4 +1,11 @@
 
+## static
+
+In your *static* folder you can put all the assets that you want to be copied as-is to the build directory. It will usually be your images.
+
+## website.config.js
+
+This is where you can configure some aspects of the website: the navbar, the footer, *etc.*
 
 ## Deploying
 
