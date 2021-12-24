@@ -20,6 +20,23 @@ const config = {
     main_page_link: user_config.main_page_link,
   },
 
+  presets: [
+    [
+      "classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
+        docs: {
+          path: user_config.path_to_docs || "../../docs",
+          routeBasePath: "docs",
+          sidebarPath: require.resolve("./sidebars.js"),
+        },
+        theme: {
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+      }),
+    ],
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -83,23 +100,6 @@ const config = {
         additionalLanguages: user_config.syntax_highlight_for || [],
       },
     }),
-
-  presets: [
-    [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          path: user_config.path_to_docs || "../../docs",
-          routeBasePath: "docs",
-          sidebarPath: require.resolve("./sidebars.js"),
-        },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
-      }),
-    ],
-  ],
 
   ...user_config.docusaurus_config,
 }
