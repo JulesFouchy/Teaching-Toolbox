@@ -1,0 +1,1 @@
+This is a Docusaurus plugins that grabs all the markdown files in ```docs/lessons``` and generates the corresponding list of skills.

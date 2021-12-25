@@ -4,6 +4,7 @@ const lightCodeTheme = require("prism-react-renderer/themes/github")
 const darkCodeTheme = require("prism-react-renderer/themes/dracula")
 const math = require("remark-math")
 const katex = require("rehype-katex")
+const sidebarItemsGenerator = require("./sidebarItemsGenerator")
 
 const user_config = require("../../website.config")()
 
@@ -28,14 +29,18 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: user_config.path_to_content || "../../content",
+          path: "../../content",
           routeBasePath: "/",
           sidebarPath: require.resolve("../../sidebars.js"),
+          sidebarItemsGenerator,
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+        },
+        pages: {
+          path: "../../standalone-pages",
         },
       }),
     ],
@@ -50,7 +55,19 @@ const config = {
     },
   ],
 
-  plugins: [require.resolve("docusaurus-lunr-search")],
+  plugins: [
+    "./gather-skills-plugin",
+    "@docusaurus/plugin-ideal-image",
+    [
+      require.resolve("docusaurus-lunr-search"),
+      {
+        excludeRoutes: [
+          "../../content/students/**/*",
+          "../../content/img/**/*",
+        ],
+      },
+    ],
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
