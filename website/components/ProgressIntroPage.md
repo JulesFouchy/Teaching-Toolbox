@@ -1,6 +1,6 @@
 import LessonsList from '@site/components/LessonsList'
 
-Welcome! In this section you will be able to see your progress live, your current grade, and the next skills that you can learn. Each student has their own page which I will update regularly with the lessons that I have validated.
+Welcome! In this section you will be able to see your progress live, your current grade, and the next lessons that you can learn. Each student has their own page which I will update regularly with the lessons that I have validated.
 
 Checked in grey are the lessons you already knew before this semester, in green the ones I validated during this semester, and in blue the ones that you can temporarily check to see what your grade would be if you were to validate those lessons.
 
