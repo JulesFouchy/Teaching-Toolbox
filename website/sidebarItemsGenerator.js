@@ -1,4 +1,4 @@
-const lesson_priority = require("./grader/lesson_priority")
+const lesson_priority = require("../grader/lesson_priority")
 
 module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
   if (args.item.dirName === "lessons") {

@@ -1,7 +1,7 @@
 const fs = require("fs")
 const fm = require("front-matter")
 const path = require("path")
-const lesson_priority = require("../grader/lesson_priority")
+const lesson_priority = require("../../grader/lesson_priority")
 
 module.exports = (context, options) => {
   return {

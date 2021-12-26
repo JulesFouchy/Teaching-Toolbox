@@ -3,7 +3,7 @@ import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
 import style from "./LessonsList.module.css"
 import Checkbox from "@mui/material/Checkbox"
 import { blueGrey } from "@mui/material/colors"
-import grader from "../grader/grader"
+import grader from "../../grader/grader"
 
 const checkbox_validated = () => (
   <Checkbox
