@@ -12,7 +12,7 @@ Then, for lessons of the same Order, a **Priority** is computed as `0.75 * Benef
 
 ## How is my grade calculated?
 
-Each mastered lesson gives you some points based on how long it should have taken you to learn. We sum all those points, and then apply [a compression function](https://www.desmos.com/calculator/6gmdt6tfmf) to map this score between 0 and 20. You can see the exact source code that we use [here](https://github.com/JulesFouchy/Teaching-Toolbox/blob/main/website/grader/grader.js).
+Each mastered lesson gives you some points based on how long it should have taken you to learn. We sum all those points, and then apply [a compression function](https://www.desmos.com/calculator/6gmdt6tfmf) to map this score between 0 and 20. You can see the exact source code that we use [here](https://github.com/JulesFouchy/Teaching-Toolbox/blob/main/grader/grader.js).
 
 ## Self-evaluation
 
