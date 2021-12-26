@@ -28,6 +28,7 @@
   width: 100px;
 }
 
+.grade_blue,
 .export_button :hover {
   cursor: pointer;
 }

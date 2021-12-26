@@ -77,6 +77,17 @@ const export_as_json_button = (object) => (
   <div onClick={() => download_as_json(object)}>Export as JSON</div>
 )
 
+const reset = (list, obj) => {
+  list.length = 0
+  obj.forceUpdate()
+}
+
+const show_blue_grade = (grade, lessons_checked_by_user, obj) => (
+  <div onClick={() => reset(lessons_checked_by_user, obj)}>
+    {grade.toFixed(1)} / 20
+  </div>
+)
+
 export default class LessonsList extends React.Component {
   lessons_checked_by_user = []
   new_lessons = {}
@@ -113,9 +124,9 @@ export default class LessonsList extends React.Component {
         {!this.is_demo && (
           <div
             className={style.grade_blue}
-            title="This is the grade that you would have if you were to validate the skills that you checked in blue"
+            title="This is the grade that you would have if you were to validate the skills that you checked in blue. Click to reset those."
           >
-            {grade_blue.toFixed(1)} / 20
+            {show_blue_grade(grade_blue, this.lessons_checked_by_user, this)}
           </div>
         )}
         {!this.is_demo && (
