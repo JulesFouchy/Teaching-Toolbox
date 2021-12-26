@@ -1,4 +1,4 @@
-import LessonsList from './LessonsList'
+import LessonsList from '@site/components/LessonsList'
 
 Welcome! In this section you will be able to see your progress live, your current grade, and the next skills that you can learn. Each student has their own page which I will update regularly with the lessons that I have validated.
 

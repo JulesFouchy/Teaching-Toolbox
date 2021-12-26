@@ -58,6 +58,7 @@ const config = {
   plugins: [
     "./lessons-list-plugin",
     "@docusaurus/plugin-ideal-image",
+    "docusaurus-plugin-includes",
     [
       require.resolve("docusaurus-lunr-search"),
       {
