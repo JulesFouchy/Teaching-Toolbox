@@ -2,7 +2,6 @@ import React from "react"
 import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
 import style from "./LessonsList.module.css"
 import Checkbox from "@mui/material/Checkbox"
-import { blueGrey } from "@mui/material/colors"
 import grader from "../../grader/grader"
 
 const checkbox_validated = () => (
@@ -23,7 +22,7 @@ const checkbox_validated_disabled = () => (
     disabled
     sx={{
       "&.Mui-checked": {
-        color: blueGrey[300],
+        color: "#90a4ae",
       },
     }}
   />
@@ -103,7 +102,8 @@ export default class LessonsList extends React.Component {
   }
 
   render() {
-    const grade = grader(lessons, [
+    const grade_green = grader(lessons, [...this.new_lessons])
+    const grade_blue = grader(lessons, [
       ...this.new_lessons,
       ...this.lessons_checked_by_user,
     ])
@@ -111,7 +111,20 @@ export default class LessonsList extends React.Component {
     return (
       <div>
         {!this.is_demo && (
-          <div className={style.grade}>{grade.toFixed(1)} / 20</div>
+          <div
+            className={style.grade_blue}
+            title="This is the grade that you would have if you were to validate the skills that you checked in blue"
+          >
+            {grade_blue.toFixed(1)} / 20
+          </div>
+        )}
+        {!this.is_demo && (
+          <div
+            className={style.grade_green}
+            title="This is your actual current grade"
+          >
+            {grade_green.toFixed(1)} / 20
+          </div>
         )}
         {this.is_demo && (
           <div className={style.export_button}>
