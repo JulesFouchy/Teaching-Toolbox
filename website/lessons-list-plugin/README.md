@@ -1,0 +1,1 @@
+This is a Docusaurus plugin that grabs all the markdown files in *content/lessons* and generates the corresponding list of Lessons.

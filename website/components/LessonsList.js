@@ -1,9 +1,9 @@
 import React from "react"
-import skills from "@site/.docusaurus/gather-skills-plugin/default/skills.json"
-import style from "./SkillsTable.module.css"
+import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
+import style from "./LessonsList.module.css"
 import Checkbox from "@mui/material/Checkbox"
 import { blueGrey } from "@mui/material/colors"
-import grader from "../../grader/grader"
+import grader from "../grader/grader"
 
 const checkbox_validated = () => (
   <Checkbox
@@ -29,24 +29,24 @@ const checkbox_validated_disabled = () => (
   />
 )
 
-const checkbox_not_validated = (skill_slug, obj) => (
+const checkbox_not_validated = (lesson_slug, obj) => (
   <Checkbox
     style={{
       color: "#29B6F6",
     }}
-    checked={obj.skills_checked_by_user.includes(skill_slug)}
+    checked={obj.lessons_checked_by_user.includes(lesson_slug)}
     onChange={(e) => {
       if (e.target.checked) {
-        obj.skills_checked_by_user.push(skill_slug)
+        obj.lessons_checked_by_user.push(lesson_slug)
       } else {
-        obj.skills_checked_by_user = obj.skills_checked_by_user.filter(
-          (slug) => slug !== skill_slug
+        obj.lessons_checked_by_user = obj.lessons_checked_by_user.filter(
+          (slug) => slug !== lesson_slug
         )
       }
       if (obj.is_demo) {
         localStorage.setItem(
-          "skills_checked_by_user",
-          JSON.stringify(obj.skills_checked_by_user)
+          "lessons_checked_by_user",
+          JSON.stringify(obj.lessons_checked_by_user)
         )
       }
       obj.forceUpdate()
@@ -58,7 +58,7 @@ function download_as_json(object) {
   const blob = new Blob([JSON.stringify(object)], {
     type: "text/json;charset=utf-8",
   })
-  const file_name = "skills.json"
+  const file_name = "lessons.json"
 
   if (false || !!document.documentMode) {
     // Internet Explorer
@@ -78,21 +78,23 @@ const export_as_json_button = (object) => (
   <div onClick={() => download_as_json(object)}>Export as JSON</div>
 )
 
-export default class SkillsTable extends React.Component {
-  skills_checked_by_user = []
-  new_skills = {}
-  old_skills = {}
+export default class LessonsList extends React.Component {
+  lessons_checked_by_user = []
+  new_lessons = {}
+  old_lessons = {}
   is_demo = false
 
-  constructor({ student_skills }) {
+  constructor({ student_lessons }) {
     super()
-    this.new_skills = [...student_skills.new]
-    this.old_skills = [...student_skills.old]
-    if (student_skills.is_demo) {
+    this.new_lessons = [...student_lessons.new]
+    this.old_lessons = [...student_lessons.old]
+    if (student_lessons.is_demo) {
       this.is_demo = true
       try {
-        this.skills_checked_by_user = [
-          ...JSON.parse(localStorage.getItem("skills_checked_by_user") || "[]"),
+        this.lessons_checked_by_user = [
+          ...JSON.parse(
+            localStorage.getItem("lessons_checked_by_user") || "[]"
+          ),
         ]
       } catch (e) {
         console.error(e)
@@ -101,9 +103,9 @@ export default class SkillsTable extends React.Component {
   }
 
   render() {
-    const grade = grader(skills, [
-      ...this.new_skills,
-      ...this.skills_checked_by_user,
+    const grade = grader(lessons, [
+      ...this.new_lessons,
+      ...this.lessons_checked_by_user,
     ])
 
     return (
@@ -113,36 +115,36 @@ export default class SkillsTable extends React.Component {
         )}
         {this.is_demo && (
           <div className={style.export_button}>
-            {export_as_json_button(this.skills_checked_by_user)}
+            {export_as_json_button(this.lessons_checked_by_user)}
           </div>
         )}
 
         <table>
           <tr>
-            <th>Skill</th>
+            <th>Lesson</th>
             <th>Validated</th>
             <th>Priority</th>
             <th>Benefit</th>
             <th>Easiness</th>
             <th>Order</th>
           </tr>
-          {skills.map((skill) => (
+          {lessons.map((lesson) => (
             <tr>
               <td>
-                <a href={skill.link}>{skill.title}</a>
+                <a href={lesson.link}>{lesson.title}</a>
               </td>
               <td>
-                {this.new_skills.find((slug) => skill.slug === slug)
+                {this.new_lessons.find((slug) => lesson.slug === slug)
                   ? checkbox_validated()
-                  : this.old_skills.find((slug) => skill.slug === slug)
+                  : this.old_lessons.find((slug) => lesson.slug === slug)
                   ? checkbox_validated_disabled()
-                  : checkbox_not_validated(skill.slug, this)}
+                  : checkbox_not_validated(lesson.slug, this)}
               </td>
-              {/* <td>{tags(skill.tags || [])}</td> */}
-              <td>{(100 * skill.priority).toFixed(0)} %</td>
-              <td>{skill.benefit}</td>
-              <td>{skill.easiness}</td>
-              <td>{skill.order}</td>
+              {/* <td>{tags(lesson.tags || [])}</td> */}
+              <td>{(100 * lesson.priority).toFixed(0)} %</td>
+              <td>{lesson.benefit}</td>
+              <td>{lesson.easiness}</td>
+              <td>{lesson.order}</td>
             </tr>
           ))}
         </table>

@@ -1,4 +1,4 @@
-const skill_priority = require("./grader/skill_priority")
+const lesson_priority = require("./grader/lesson_priority")
 
 module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
   if (args.item.dirName === "lessons") {
@@ -8,7 +8,7 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
       // Compute the priority
       .map((doc) => ({
         ...doc,
-        priority: skill_priority({
+        priority: lesson_priority({
           benefit: doc.frontMatter.benefit,
           easiness: doc.frontMatter.easiness,
           order: doc.frontMatter.order,

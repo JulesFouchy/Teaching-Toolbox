@@ -56,7 +56,7 @@ const config = {
   ],
 
   plugins: [
-    "./gather-skills-plugin",
+    "./lessons-list-plugin",
     "@docusaurus/plugin-ideal-image",
     [
       require.resolve("docusaurus-lunr-search"),

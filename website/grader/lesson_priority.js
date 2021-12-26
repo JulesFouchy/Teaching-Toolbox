@@ -14,7 +14,7 @@ const validate = (name, skill) => {
     }
 }
 
-const skill_priority = (skill) => {
+const lesson_priority = (skill) => {
     if (!validate("benefit", skill)  ||
         !validate("easiness", skill) ||
         !validate("order", skill))
@@ -31,4 +31,4 @@ const skill_priority = (skill) => {
     return relative_prio
 }
 
-module.exports = skill_priority
+module.exports = lesson_priority
