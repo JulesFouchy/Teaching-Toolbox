@@ -88,11 +88,18 @@ const show_blue_grade = (grade, lessons_checked_by_user, obj) => (
   </div>
 )
 
+const tag = (tag_name) => <div>{tag_name}</div>
+
+const tags = (tags_list) => (
+  <div>{tags_list.map((tag_name) => tag(tag_name))}</div>
+)
+
 export default class LessonsList extends React.Component {
   lessons_checked_by_user = []
   new_lessons = {}
   old_lessons = {}
   is_demo = false
+  tags_filter = ["Tools"]
 
   constructor({ student_lessons }) {
     super()
@@ -147,30 +154,35 @@ export default class LessonsList extends React.Component {
           <tr>
             <th>Lesson</th>
             <th>Validated</th>
+            <th>Tags</th>
             <th>Priority</th>
             <th>Benefit</th>
             <th>Easiness</th>
             <th>Order</th>
           </tr>
-          {lessons.map((lesson) => (
-            <tr>
-              <td>
-                <a href={lesson.link}>{lesson.title}</a>
-              </td>
-              <td>
-                {this.new_lessons.find((slug) => lesson.slug === slug)
-                  ? checkbox_validated()
-                  : this.old_lessons.find((slug) => lesson.slug === slug)
-                  ? checkbox_validated_disabled()
-                  : checkbox_not_validated(lesson.slug, this)}
-              </td>
-              {/* <td>{tags(lesson.tags || [])}</td> */}
-              <td>{(100 * lesson.priority).toFixed(0)} %</td>
-              <td>{lesson.benefit}</td>
-              <td>{lesson.easiness}</td>
-              <td>{lesson.order}</td>
-            </tr>
-          ))}
+          {lessons
+            .filter((lesson) => {
+              return true //(lesson.tags || [""])[0] === this.tags_filter[0]
+            })
+            .map((lesson) => (
+              <tr>
+                <td>
+                  <a href={lesson.link}>{lesson.title}</a>
+                </td>
+                <td>
+                  {this.new_lessons.find((slug) => lesson.slug === slug)
+                    ? checkbox_validated()
+                    : this.old_lessons.find((slug) => lesson.slug === slug)
+                    ? checkbox_validated_disabled()
+                    : checkbox_not_validated(lesson.slug, this)}
+                </td>
+                <td>{tags(lesson.tags || [])}</td>
+                <td>{(100 * lesson.priority).toFixed(0)} %</td>
+                <td>{lesson.benefit}</td>
+                <td>{lesson.easiness}</td>
+                <td>{lesson.order}</td>
+              </tr>
+            ))}
         </table>
       </div>
     )
