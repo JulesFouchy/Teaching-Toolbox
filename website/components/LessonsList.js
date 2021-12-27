@@ -112,7 +112,7 @@ export default class LessonsList extends React.Component {
           ...JSON.parse(
             localStorage.getItem("lessons_checked_by_user") || "[]"
           ),
-        ]
+        ].filter((lesson) => lessons.includes(lesson))
       } catch (e) {
         console.error(e)
       }
