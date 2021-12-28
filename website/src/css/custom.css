@@ -54,11 +54,13 @@ html[data-theme="dark"] .header-github-link:before {
   width: 24px;
   height: 24px;
   display: flex;
-  background: url("/img/question-mark-black.png") no-repeat;
+  background: url(https://github.com/JulesFouchy/Teaching-Toolbox/raw/main/website/static/img/question-mark-black.png)
+    no-repeat;
   background-size: contain;
 }
 html[data-theme="dark"] .header-issues-link:before {
-  background: url("/img/question-mark-white.png") no-repeat;
+  background: url(https://github.com/JulesFouchy/Teaching-Toolbox/raw/main/website/static/img/question-mark-white.png)
+    no-repeat;
   background-size: contain;
 }
 /*---*/
