@@ -31,10 +31,15 @@ module.exports = (context, options) => {
       )
       return {
         lessons: sorted_lessons,
+        lessons_tags: context.siteConfig.customFields.lessons_allowed_tags,
       }
     },
     async contentLoaded({ content, actions }) {
       await actions.createData("lessons.json", JSON.stringify(content.lessons))
+      await actions.createData(
+        "lessons_tags.json",
+        JSON.stringify(content.lessons_tags)
+      )
     },
   }
 }

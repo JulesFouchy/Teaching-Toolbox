@@ -21,6 +21,7 @@ const config = {
   staticDirectories: ["static", "../../static"],
   customFields: {
     main_page_link: user_config.main_page_link,
+    lessons_allowed_tags: user_config.lessons_allowed_tags,
   },
 
   presets: [
