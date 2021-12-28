@@ -180,7 +180,7 @@ export default class LessonsList extends React.Component {
         <br />
         {!this.is_demo && (
           <div
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{ display: "flex", flexDirection: "column", top: "200px" }}
             className={style.stick_to_the_right}
           >
             <div
@@ -198,8 +198,10 @@ export default class LessonsList extends React.Component {
           </div>
         )}
         {this.is_demo && (
-          <div className={style.export_button}>
-            {export_as_json_button(this.lessons_checked_by_user)}
+          <div style={{ top: "200px" }} className={style.stick_to_the_right}>
+            <div className={style.export_button}>
+              {export_as_json_button(this.lessons_checked_by_user)}
+            </div>
           </div>
         )}
         <table>

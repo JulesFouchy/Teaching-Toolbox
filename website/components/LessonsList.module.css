@@ -1,10 +1,14 @@
-.stick_to_the_right,
-.export_button {
+.stick_to_the_right {
   position: sticky;
   position: -webkit-sticky;
-  top: 100px;
   float: right;
   margin: 10px;
+}
+
+.grade_green,
+.grade_blue,
+.export_button {
+  position: absolute;
 }
 
 .grade_green,
@@ -33,10 +37,22 @@
   background-color: #29b6f6;
 }
 
+.export_button {
+  width: 150px;
+}
+
 .grade_green,
 .grade_blue {
   width: 100px;
   margin: 5px;
+}
+
+.grade_green {
+  top: 0px;
+}
+
+.grade_blue {
+  top: 40px;
 }
 
 .grade_blue,
