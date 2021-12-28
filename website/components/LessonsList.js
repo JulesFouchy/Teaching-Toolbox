@@ -74,6 +74,12 @@ function download_as_json(object) {
   }
 }
 
+const button = (text, onClick) => (
+  <div className={style.button}>
+    <div onClick={onClick}>{text}</div>
+  </div>
+)
+
 const export_as_json_button = (object) => (
   <div onClick={() => download_as_json(object)}>Export as JSON</div>
 )
@@ -98,7 +104,7 @@ const tags = (tags_list) => (
 const tag_filter = (tag_name, selected_tags, obj) => {
   const is_selected = selected_tags.includes(tag_name)
   return (
-    <span
+    <div
       className={
         is_selected ? style.tag_filter_selected : style.tag_filter_not_selected
       }
@@ -110,15 +116,28 @@ const tag_filter = (tag_name, selected_tags, obj) => {
       }}
     >
       {tag_name}
-    </span>
+    </div>
   )
 }
 
 const tags_filters = (selected_tags, obj) => {
   return (
-    <div>
+    <div className={style.tags_filters}>
       <b>Filters:</b>
-      {lessons_tags.map((tag_name) => tag_filter(tag_name, selected_tags, obj))}
+      {button("Select All", () => {
+        selected_tags.length = 0
+        lessons_tags.forEach((tag_name) => selected_tags.push(tag_name))
+        obj.forceUpdate()
+      })}
+      {button("Remove All", () => {
+        selected_tags.length = 0
+        obj.forceUpdate()
+      })}
+      <div className={style.tags_filter_container}>
+        {lessons_tags.map((tag_name) =>
+          tag_filter(tag_name, selected_tags, obj)
+        )}
+      </div>
     </div>
   )
 }
@@ -157,6 +176,7 @@ export default class LessonsList extends React.Component {
 
     return (
       <div>
+        {tags_filters(this.tags_filter, this)}
         {!this.is_demo && (
           <div
             className={style.grade_blue}
@@ -178,7 +198,6 @@ export default class LessonsList extends React.Component {
             {export_as_json_button(this.lessons_checked_by_user)}
           </div>
         )}
-        {tags_filters(this.tags_filter, this)}
         <table>
           <tr>
             <th>Lesson</th>
