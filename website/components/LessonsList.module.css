@@ -32,3 +32,28 @@
 .export_button :hover {
   cursor: pointer;
 }
+
+.tag_filter_selected,
+.tag_filter_not_selected {
+  text-align: center;
+  padding: 2px 10px;
+  margin: 2px;
+  font-weight: bold;
+  border-radius: 50px;
+  border-style: solid;
+}
+
+.tag_filter_selected {
+  color: white;
+  background-color: #25c2a0;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.tag_filter_not_selected {
+  border-color: grey;
+}
+
+.tag_filter_selected,
+.tag_filter_not_selected :hover {
+  cursor: pointer;
+}

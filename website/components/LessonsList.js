@@ -1,5 +1,6 @@
 import React from "react"
 import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
+import lessons_tags from "@site/.docusaurus/lessons-list-plugin/default/lessons_tags.json"
 import style from "./LessonsList.module.css"
 import Checkbox from "@mui/material/Checkbox"
 import grader from "../../grader/grader"
@@ -94,12 +95,40 @@ const tags = (tags_list) => (
   <div>{tags_list.map((tag_name) => tag(tag_name))}</div>
 )
 
+const tag_filter = (tag_name, selected_tags, obj) => {
+  const is_selected = selected_tags.includes(tag_name)
+  return (
+    <span
+      className={
+        is_selected ? style.tag_filter_selected : style.tag_filter_not_selected
+      }
+      onClick={() => {
+        is_selected
+          ? selected_tags.splice(selected_tags.indexOf(tag_name), 1)
+          : selected_tags.push(tag_name)
+        obj.forceUpdate()
+      }}
+    >
+      {tag_name}
+    </span>
+  )
+}
+
+const tags_filters = (selected_tags, obj) => {
+  return (
+    <div>
+      <b>Filters:</b>
+      {lessons_tags.map((tag_name) => tag_filter(tag_name, selected_tags, obj))}
+    </div>
+  )
+}
+
 export default class LessonsList extends React.Component {
   lessons_checked_by_user = []
   new_lessons = {}
   old_lessons = {}
   is_demo = false
-  tags_filter = ["Tools"]
+  tags_filter = [...lessons_tags]
 
   constructor({ student_lessons }) {
     super()
@@ -149,7 +178,7 @@ export default class LessonsList extends React.Component {
             {export_as_json_button(this.lessons_checked_by_user)}
           </div>
         )}
-
+        {tags_filters(this.tags_filter, this)}
         <table>
           <tr>
             <th>Lesson</th>
@@ -162,7 +191,9 @@ export default class LessonsList extends React.Component {
           </tr>
           {lessons
             .filter((lesson) => {
-              return true //(lesson.tags || [""])[0] === this.tags_filter[0]
+              return this.tags_filter.some((wanted_tag) =>
+                (lesson.tags || []).includes(wanted_tag)
+              )
             })
             .map((lesson) => (
               <tr>
