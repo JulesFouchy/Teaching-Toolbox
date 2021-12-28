@@ -10,11 +10,20 @@ module.exports = (context, options) => {
       // Grabs all the frontmatters of the lessons and convert the to Lessons
       const lessons_path = path.join(context.siteDir, "../../content/lessons")
       const files = fs.readdirSync(lessons_path)
+      const allowed_tags = context.siteConfig.customFields.lessons_allowed_tags
       const lessons = files
         .map((file) => {
           const data = fs.readFileSync(path.join(lessons_path, file), "utf8")
           const attribs = fm(data).attributes
           const slug = path.parse(file).name
+          // Check that all tags have been declared in lessons_allowed_tags
+          ;(attribs.tags || []).forEach((tag) => {
+            if (!allowed_tags.includes(tag)) {
+              console.error(`ERROR: "${file}" has invalid tag: "${tag}"
+Either fix this tag or add it to lessons_allowed_tags in website.config.js`)
+              throw ""
+            }
+          })
           return {
             ...attribs,
             link: path.join(path.join(context.baseUrl, "lessons"), slug),
@@ -31,7 +40,7 @@ module.exports = (context, options) => {
       )
       return {
         lessons: sorted_lessons,
-        lessons_tags: context.siteConfig.customFields.lessons_allowed_tags,
+        lessons_tags: allowed_tags,
       }
     },
     async contentLoaded({ content, actions }) {
