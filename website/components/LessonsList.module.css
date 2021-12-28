@@ -1,5 +1,4 @@
-.grade_green,
-.grade_blue,
+.stick_to_the_right,
 .export_button {
   position: sticky;
   position: -webkit-sticky;
@@ -37,6 +36,7 @@
 .grade_green,
 .grade_blue {
   width: 100px;
+  margin: 5px;
 }
 
 .grade_blue,

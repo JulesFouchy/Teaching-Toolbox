@@ -177,20 +177,24 @@ export default class LessonsList extends React.Component {
     return (
       <div>
         {tags_filters(this.tags_filter, this)}
+        <br />
         {!this.is_demo && (
           <div
-            className={style.grade_blue}
-            title="This is the grade that you would have if you were to validate the skills that you checked in blue. Click to reset those."
+            style={{ display: "flex", flexDirection: "column" }}
+            className={style.stick_to_the_right}
           >
-            {show_blue_grade(grade_blue, this.lessons_checked_by_user, this)}
-          </div>
-        )}
-        {!this.is_demo && (
-          <div
-            className={style.grade_green}
-            title="This is your actual current grade"
-          >
-            {grade_green.toFixed(1)} / 20
+            <div
+              className={style.grade_green}
+              title="This is your actual current grade"
+            >
+              {grade_green.toFixed(1)} / 20
+            </div>
+            <div
+              className={style.grade_blue}
+              title="This is the grade that you would have if you were to validate the skills that you checked in blue. Click to reset those."
+            >
+              {show_blue_grade(grade_blue, this.lessons_checked_by_user, this)}
+            </div>
           </div>
         )}
         {this.is_demo && (
