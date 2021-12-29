@@ -87,6 +87,7 @@ const config = {
             position: "right",
             className: "header-issues-link",
             "aria-label": "GitHub issues",
+            title: "Ask a question",
           },
         ],
       },
