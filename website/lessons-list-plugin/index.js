@@ -35,9 +35,14 @@ Either fix this tag or add it to lessons_allowed_tags in website.config.js`)
         ...lesson,
         priority: lesson_priority(lesson),
       }))
-      const sorted_lessons = lessons_with_prio.sort(
-        (a, b) => b.priority - a.priority
-      )
+      const sorted_lessons = lessons_with_prio.sort((a, b) => {
+        const prio = b.priority - a.priority
+        if (prio === 0) {
+          return (b.bias || 0) - (a.bias || 0)
+        } else {
+          return prio
+        }
+      })
       return {
         lessons: sorted_lessons,
         lessons_tags: allowed_tags,

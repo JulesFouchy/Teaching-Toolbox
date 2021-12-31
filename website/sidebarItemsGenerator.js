@@ -24,7 +24,12 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
         }
         // Then sort by priority
         else {
-          return b.priority - a.priority
+          const prio = b.priority - a.priority
+          if (prio === 0) {
+            return (b.frontMatter.bias || 0) - (a.frontMatter.bias || 0)
+          } else {
+            return prio
+          }
         }
       })
       // Generate the item
