@@ -30,8 +30,9 @@ const BlueGrade = (grade) => (
 )
 
 class Grade extends React.Component {
-  constructor({}) {
+  constructor({ top_position }) {
     super()
+    this.top_position = top_position
     add_grade_listener(() => this.forceUpdate())
     add_student_listener(() => this.forceUpdate())
   }
@@ -55,7 +56,7 @@ class Grade extends React.Component {
           style={{
             display: "flex",
             flexDirection: "column",
-            top: "200px",
+            top: this.top_position,
           }}
           className={style.stick_to_the_right}
         >

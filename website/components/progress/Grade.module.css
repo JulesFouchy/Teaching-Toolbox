@@ -19,11 +19,11 @@
 
 .grade_green {
   background-color: #25c2a0;
-  top: 120px;
+  top: 0px;
 }
 
 .grade_blue {
   background-color: #29b6f6;
-  top: 160px;
+  top: 40px;
   cursor: pointer;
 }
