@@ -2,17 +2,11 @@ const fs = require("fs")
 const fm = require("front-matter")
 const path = require("path")
 const lesson_priority = require("../../grader/lesson_priority")
+const levels_points = require("../../../levels_points.json")
 
 const difficulty = (lesson) => 6 - lesson.easiness
 
 const lessons_points = (lessons) => {
-  const level_points = {
-    1: 10,
-    2: 5,
-    3: 3,
-    4: 1.5,
-    5: 0.5,
-  }
   const level_total_difficulty = {}
   for (let level = 1; level <= 5; ++level) {
     level_total_difficulty[level] = lessons
@@ -24,7 +18,7 @@ const lessons_points = (lessons) => {
   return lessons.map((lesson) => ({
     ...lesson,
     points:
-      (level_points[lesson.level] * difficulty(lesson)) /
+      (levels_points[lesson.level] * difficulty(lesson)) /
       level_total_difficulty[lesson.level],
   }))
 }
