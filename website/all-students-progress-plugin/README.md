@@ -1,0 +1,1 @@
+This is a Docusaurus plugin that grabs all the json files in *students-progress* and generates an object containing the progress of each student.

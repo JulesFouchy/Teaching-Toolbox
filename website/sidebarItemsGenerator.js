@@ -11,7 +11,7 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
         priority: lesson_priority({
           benefit: doc.frontMatter.benefit,
           easiness: doc.frontMatter.easiness,
-          order: doc.frontMatter.order,
+          level: doc.frontMatter.level,
         }),
       }))
       // Sort

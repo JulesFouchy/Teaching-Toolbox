@@ -3,6 +3,32 @@ const fm = require("front-matter")
 const path = require("path")
 const lesson_priority = require("../../grader/lesson_priority")
 
+const difficulty = (lesson) => 6 - lesson.easiness
+
+const lessons_points = (lessons) => {
+  const level_points = {
+    1: 10,
+    2: 5,
+    3: 3,
+    4: 1.5,
+    5: 0.5,
+  }
+  const level_total_difficulty = {}
+  for (let level = 1; level <= 5; ++level) {
+    level_total_difficulty[level] = lessons
+      .filter((lesson) => lesson.level === level)
+      .reduce((acc, lesson) => {
+        return acc + difficulty(lesson)
+      }, 0)
+  }
+  return lessons.map((lesson) => ({
+    ...lesson,
+    points:
+      (level_points[lesson.level] * difficulty(lesson)) /
+      level_total_difficulty[lesson.level],
+  }))
+}
+
 module.exports = (context, options) => {
   return {
     name: "lessons-list-plugin",
@@ -35,7 +61,15 @@ Either fix this tag or add it to lessons_allowed_tags in website.config.js`)
         ...lesson,
         priority: lesson_priority(lesson),
       }))
-      const sorted_lessons = lessons_with_prio.sort((a, b) => {
+      const lessons_with_points = lessons_points(lessons_with_prio)
+      // Useful to copy-paste the full list of lessons to init a student_progress.json:
+      //   console.log(
+      //     lessons.reduce((obj, lesson) => {
+      //       obj[lesson.slug] = 0
+      //       return obj
+      //     }, {})
+      //   )
+      const sorted_lessons = lessons_with_points.sort((a, b) => {
         const prio = b.priority - a.priority
         if (prio === 0) {
           return (b.bias || 0) - (a.bias || 0)

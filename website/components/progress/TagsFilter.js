@@ -14,6 +14,8 @@ const notify_tags_filter_listeners = () => {
   window.tags_filter_listeners.forEach((cb) => cb())
 }
 
+const get_selected_tags = () => window.selected_tags
+
 const tag_filter = (tag_name, selected_tags) => {
   const is_selected = selected_tags.includes(tag_name)
   return (
@@ -70,4 +72,4 @@ class TagsFilter extends React.Component {
   }
 }
 
-export { TagsFilter, add_tags_filter_listener }
+export { TagsFilter, add_tags_filter_listener, get_selected_tags }

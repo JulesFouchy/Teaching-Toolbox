@@ -2,6 +2,10 @@
 
 In this folder you write all your content, often in *Markdown* but you case use *React* too.
 
+## students-progress
+
+Here you store of each student on each lesson.
+
 ## sidebars.js
 
 In here you describe how your sidebars are generated. Refer to [the documentation](https://docusaurus.io/docs/sidebar).

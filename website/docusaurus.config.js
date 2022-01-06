@@ -58,6 +58,7 @@ const config = {
 
   plugins: [
     "./lessons-list-plugin",
+    "./all-students-progress-plugin",
     "@docusaurus/plugin-ideal-image",
     "docusaurus-plugin-includes",
     [

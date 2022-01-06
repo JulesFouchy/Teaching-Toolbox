@@ -17,12 +17,12 @@ const approx_equal = (
 }
 
 Deno.test("Most important lesson has priority 1", () => {
-  const prio = lesson_priority({ benefit: 5, easiness: 5, order: 1 })
+  const prio = lesson_priority({ benefit: 5, easiness: 5, level: 1 })
   assert(approx_equal(prio, 1))
 })
 
 Deno.test("Least important lesson has priority 0", () => {
-  const prio = lesson_priority({ benefit: 1, easiness: 1, order: 5 })
+  const prio = lesson_priority({ benefit: 1, easiness: 1, level: 5 })
   assert(approx_equal(prio, 0))
 })
 
@@ -41,12 +41,12 @@ Deno.test("Respect natural order", () => {
               lesson_priority({
                 benefit: benefit0,
                 easiness: easiness0,
-                order: 1,
+                level: 1,
               }) <
                 lesson_priority({
                   benefit: benefit1,
                   easiness: easiness1,
-                  order: 1,
+                  level: 1,
                 })
             )
           }

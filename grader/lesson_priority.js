@@ -19,7 +19,7 @@ const lesson_priority = (lesson) => {
   if (
     !validate("benefit", lesson) ||
     !validate("easiness", lesson) ||
-    !validate("order", lesson)
+    !validate("level", lesson)
   ) {
     return -1
   }
@@ -29,11 +29,11 @@ const lesson_priority = (lesson) => {
     5
   )
   // prettier-ignore
-  const relative_prio = lesson.order === 5 ? map(absolute_prio, 0.0, 0.2)
-                      : lesson.order === 4 ? map(absolute_prio, 0.2, 0.4)
-                      : lesson.order === 3 ? map(absolute_prio, 0.4, 0.6)
-                      : lesson.order === 2 ? map(absolute_prio, 0.6, 0.8)
-                      : lesson.order === 1 ? map(absolute_prio, 0.8, 1.0)
+  const relative_prio = lesson.level === 5 ? map(absolute_prio, 0.0, 0.2)
+                      : lesson.level === 4 ? map(absolute_prio, 0.2, 0.4)
+                      : lesson.level === 3 ? map(absolute_prio, 0.4, 0.6)
+                      : lesson.level === 2 ? map(absolute_prio, 0.6, 0.8)
+                      : lesson.level === 1 ? map(absolute_prio, 0.8, 1.0)
                       : -1
   return relative_prio
 }
