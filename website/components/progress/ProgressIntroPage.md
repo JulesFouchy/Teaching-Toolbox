@@ -1,4 +1,4 @@
-import LessonsList from '@site/components/LessonsList'
+import LessonsList, {toc as MyTOC} from '@site/components/LessonsList'
 
 Welcome! In this section you will be able to see your progress live, your current grade, and the next lessons that you can learn. Each student has their own page which I will update regularly with the lessons that I have validated.
 
@@ -29,3 +29,5 @@ You don't need to check lessons of order 3 or higher if you can't be bothered re
     ],
     is_demo: true,
 }}/>
+
+export const toc = [...MyTOC];

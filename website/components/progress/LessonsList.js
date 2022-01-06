@@ -3,7 +3,13 @@ import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
 import lessons_tags from "@site/.docusaurus/lessons-list-plugin/default/lessons_tags.json"
 import style from "./LessonsList.module.css"
 import Checkbox from "@mui/material/Checkbox"
-import grader from "../../grader/grader"
+import grader from "../../../grader/grader"
+import Butterfly from "../../static/img/butterfly.svg"
+import ButterflyStroke from "../../static/img/butterfly-stroke.svg"
+import SvgIcon from "@mui/material/SvgIcon"
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder"
+import BookmarkIcon from "@mui/icons-material/Bookmark"
+import BrowserOnly from "@docusaurus/BrowserOnly"
 
 const checkbox_validated = () => (
   <Checkbox
@@ -14,44 +20,86 @@ const checkbox_validated = () => (
         color: "#25c2a0",
       },
     }}
-  />
-)
-
-const checkbox_validated_disabled = () => (
-  <Checkbox
-    checked
-    disabled
-    sx={{
-      "&.Mui-checked": {
-        color: "#90a4ae",
-      },
-    }}
+    // icon={<Butterfly />}
+    // checkedIcon={<ButterflyStroke />}
   />
 )
 
 const checkbox_not_validated = (lesson_slug, obj) => (
-  <Checkbox
-    style={{
-      color: "#29B6F6",
-    }}
-    checked={obj.lessons_checked_by_user.includes(lesson_slug)}
-    onChange={(e) => {
-      if (e.target.checked) {
-        obj.lessons_checked_by_user.push(lesson_slug)
-      } else {
-        obj.lessons_checked_by_user = obj.lessons_checked_by_user.filter(
-          (slug) => slug !== lesson_slug
-        )
-      }
-      if (obj.is_demo) {
-        localStorage.setItem(
-          "lessons_checked_by_user",
-          JSON.stringify(obj.lessons_checked_by_user)
-        )
-      }
-      obj.forceUpdate()
-    }}
-  />
+  <span>
+    <Checkbox
+      style={{
+        color: "#29B6F6",
+      }}
+      icon={<ButterflyStroke />}
+      checkedIcon={<Butterfly />}
+      checked={obj.lessons_checked_by_user.includes(lesson_slug)}
+      onChange={(e) => {
+        if (e.target.checked) {
+          obj.lessons_checked_by_user.push(lesson_slug)
+        } else {
+          obj.lessons_checked_by_user = obj.lessons_checked_by_user.filter(
+            (slug) => slug !== lesson_slug
+          )
+        }
+        if (obj.is_demo) {
+          localStorage.setItem(
+            "lessons_checked_by_user",
+            JSON.stringify(obj.lessons_checked_by_user)
+          )
+        }
+        obj.forceUpdate()
+      }}
+    />
+    <Checkbox
+      style={{
+        color: "#29B6F6",
+      }}
+      icon={<ButterflyStroke />}
+      checkedIcon={<Butterfly />}
+      checked={obj.lessons_checked_by_user.includes(lesson_slug)}
+      onChange={(e) => {
+        if (e.target.checked) {
+          obj.lessons_checked_by_user.push(lesson_slug)
+        } else {
+          obj.lessons_checked_by_user = obj.lessons_checked_by_user.filter(
+            (slug) => slug !== lesson_slug
+          )
+        }
+        if (obj.is_demo) {
+          localStorage.setItem(
+            "lessons_checked_by_user",
+            JSON.stringify(obj.lessons_checked_by_user)
+          )
+        }
+        obj.forceUpdate()
+      }}
+    />
+    <Checkbox
+      style={{
+        color: "#29B6F6",
+      }}
+      icon={<ButterflyStroke />}
+      checkedIcon={<Butterfly />}
+      checked={obj.lessons_checked_by_user.includes(lesson_slug)}
+      onChange={(e) => {
+        if (e.target.checked) {
+          obj.lessons_checked_by_user.push(lesson_slug)
+        } else {
+          obj.lessons_checked_by_user = obj.lessons_checked_by_user.filter(
+            (slug) => slug !== lesson_slug
+          )
+        }
+        if (obj.is_demo) {
+          localStorage.setItem(
+            "lessons_checked_by_user",
+            JSON.stringify(obj.lessons_checked_by_user)
+          )
+        }
+        obj.forceUpdate()
+      }}
+    />
+  </span>
 )
 
 function download_as_json(object) {
@@ -142,6 +190,47 @@ const tags_filters = (selected_tags, obj) => {
   )
 }
 
+const lessons_table = ({ order, lessons, tags_filter, new_lessons, obj }) => {
+  return (
+    <div>
+      <h2>Order {order}</h2>
+      <table>
+        <tr>
+          <th>Lesson</th>
+          <th>Validated</th>
+          <th>Tags</th>
+          <th>Priority</th>
+          <th>Benefit</th>
+          <th>Easiness</th>
+        </tr>
+        {lessons
+          .filter((lesson) => lesson.order === order)
+          .filter((lesson) => {
+            return tags_filter.some((wanted_tag) =>
+              (lesson.tags || []).includes(wanted_tag)
+            )
+          })
+          .map((lesson) => (
+            <tr>
+              <td>
+                <a href={lesson.link}>{lesson.title}</a>
+              </td>
+              <td>
+                {new_lessons.find((slug) => lesson.slug === slug)
+                  ? checkbox_validated()
+                  : checkbox_not_validated(lesson.slug, obj)}
+              </td>
+              <td>{tags(lesson.tags || [])}</td>
+              <td>{(100 * lesson.priority).toFixed(0)} %</td>
+              <td>{lesson.benefit}</td>
+              <td>{lesson.easiness}</td>
+            </tr>
+          ))}
+      </table>
+    </div>
+  )
+}
+
 export default class LessonsList extends React.Component {
   lessons_checked_by_user = []
   new_lessons = {}
@@ -173,14 +262,26 @@ export default class LessonsList extends React.Component {
       ...this.new_lessons,
       ...this.lessons_checked_by_user,
     ])
+    const lessons_table_params = {
+      lessons,
+      tags_filter: this.tags_filter,
+      new_lessons: this.new_lessons,
+      obj: this,
+    }
 
     return (
+      //   <BrowserOnly>
+      //     {() => (
       <div>
         {tags_filters(this.tags_filter, this)}
         <br />
         {!this.is_demo && (
           <div
-            style={{ display: "flex", flexDirection: "column", top: "200px" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              top: "200px",
+            }}
             className={style.stick_to_the_right}
           >
             <div
@@ -204,43 +305,29 @@ export default class LessonsList extends React.Component {
             </div>
           </div>
         )}
-        <table>
-          <tr>
-            <th>Lesson</th>
-            <th>Validated</th>
-            <th>Tags</th>
-            <th>Priority</th>
-            <th>Benefit</th>
-            <th>Easiness</th>
-            <th>Order</th>
-          </tr>
-          {lessons
-            .filter((lesson) => {
-              return this.tags_filter.some((wanted_tag) =>
-                (lesson.tags || []).includes(wanted_tag)
-              )
-            })
-            .map((lesson) => (
-              <tr>
-                <td>
-                  <a href={lesson.link}>{lesson.title}</a>
-                </td>
-                <td>
-                  {this.new_lessons.find((slug) => lesson.slug === slug)
-                    ? checkbox_validated()
-                    : this.old_lessons.find((slug) => lesson.slug === slug)
-                    ? checkbox_validated_disabled()
-                    : checkbox_not_validated(lesson.slug, this)}
-                </td>
-                <td>{tags(lesson.tags || [])}</td>
-                <td>{(100 * lesson.priority).toFixed(0)} %</td>
-                <td>{lesson.benefit}</td>
-                <td>{lesson.easiness}</td>
-                <td>{lesson.order}</td>
-              </tr>
-            ))}
-        </table>
+        {lessons_table({
+          order: 1,
+          ...lessons_table_params,
+        })}
+        {lessons_table({
+          order: 2,
+          ...lessons_table_params,
+        })}
+        {lessons_table({
+          order: 3,
+          ...lessons_table_params,
+        })}
+        {lessons_table({
+          order: 4,
+          ...lessons_table_params,
+        })}
+        {lessons_table({
+          order: 5,
+          ...lessons_table_params,
+        })}
       </div>
+      //     )}
+      //   </BrowserOnly>
     )
   }
 }
