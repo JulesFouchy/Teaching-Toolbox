@@ -49,19 +49,32 @@ const CheckboxNotValidated = ({ lesson_slug, progress_level }) => (
   </span>
 )
 
+const Butterfly = ({ idx, butterflies_count, lesson_slug }) => {
+  return idx < butterflies_count ? (
+    <CheckboxValidated />
+  ) : (
+    <CheckboxNotValidated lesson_slug={lesson_slug} progress_level={idx + 1} />
+  )
+}
+
 const ButterfliesProgress = (butterflies_count, lesson_slug) => {
   return (
     <span>
-      {[...Array(3).keys()].map((idx) =>
-        idx < butterflies_count ? (
-          <CheckboxValidated />
-        ) : (
-          <CheckboxNotValidated
-            lesson_slug={lesson_slug}
-            progress_level={idx + 1}
-          />
-        )
-      )}
+      <Butterfly
+        idx={0}
+        butterflies_count={butterflies_count}
+        lesson_slug={lesson_slug}
+      />
+      <Butterfly
+        idx={1}
+        butterflies_count={butterflies_count}
+        lesson_slug={lesson_slug}
+      />
+      <Butterfly
+        idx={2}
+        butterflies_count={butterflies_count}
+        lesson_slug={lesson_slug}
+      />
     </span>
   )
 }
