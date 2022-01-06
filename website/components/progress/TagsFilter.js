@@ -45,6 +45,7 @@ class TagsFilter extends React.Component {
   render() {
     return (
       <div className={style.tags_filters}>
+        <b>Tags:</b>
         <Button
           content="Select All"
           onClick={() => {
