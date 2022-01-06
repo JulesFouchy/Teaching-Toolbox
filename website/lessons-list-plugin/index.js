@@ -38,6 +38,8 @@ module.exports = (context, options) => {
       const files = fs.readdirSync(lessons_path)
       const allowed_tags = context.siteConfig.customFields.lessons_allowed_tags
       const lessons = files
+        .filter((file) => [".md", ".mdx"].includes(path.parse(file).ext))
+        .filter((file) => !path.parse(file).name.startsWith("_"))
         .map((file) => {
           const data = fs.readFileSync(path.join(lessons_path, file), "utf8")
           const attribs = fm(data).attributes
