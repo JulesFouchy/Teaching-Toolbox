@@ -1,3 +1,5 @@
+const levels_points = require("../../levels_points.json")
+
 /// Returns a number between 0 and 1 (maps range_begin to 0 and range_end to 1)
 const normalize = (x, range_begin, range_end) =>
   (x - range_begin) / (range_end - range_begin)
@@ -28,15 +30,11 @@ const lesson_priority = (lesson) => {
     1,
     5
   )
-  // prettier-ignore
-  const relative_prio = lesson.level === 5 ? map(absolute_prio, 0.0, 0.2)
-                      : lesson.level === 4 ? map(absolute_prio, 0.2, 0.4)
-                      : lesson.level === 3 ? map(absolute_prio, 0.4, 0.6)
-                      : lesson.level === 2 ? map(absolute_prio, 0.6, 0.8)
-                      : lesson.level === 1 ? map(absolute_prio, 0.8, 1.0)
-                      : -1
+  const levels_count = Object.entries(levels_points).length
+  const min_prio = map((lesson.level - 1) / (levels_count - 1), 0.8, 0.0)
+  const max_prio = map((lesson.level - 1) / (levels_count - 1), 1.0, 0.2)
+  const relative_prio = map(absolute_prio, min_prio, max_prio)
   return relative_prio
 }
 
 module.exports = lesson_priority
-// export default lesson_priority
