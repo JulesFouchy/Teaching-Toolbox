@@ -64,7 +64,10 @@ const config = {
     [
       require.resolve("docusaurus-lunr-search"),
       {
-        excludeRoutes: ["../../content/img/**/*"],
+        excludeRoutes: [
+          "../../content/lessons/img/**/*",
+          "../../content/assignment/img/**/*",
+        ],
       },
     ],
   ],
