@@ -12,7 +12,7 @@ const notify_student_listeners = () => {
   window.student_listeners.forEach((cb) => cb())
 }
 const get_current_student = () =>
-  localStorage.getItem("current_student_name") || ""
+  localStorage.getItem("current_student_name") || "jules-f"
 const set_current_student = (student) => {
   localStorage.setItem("current_student_name", student)
   notify_student_listeners()
