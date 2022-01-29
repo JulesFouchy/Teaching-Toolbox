@@ -33,7 +33,9 @@ module.exports = async () => {
             path: "../../content",
             routeBasePath: "/",
             sidebarPath: require.resolve("../../sidebars.js"),
-            sidebarItemsGenerator,
+            sidebarItemsGenerator: user_config.should_sort_lessons_by_priority ?
+                sidebarItemsGenerator :
+                undefined,
             remarkPlugins: [math],
             rehypePlugins: [katex],
           },
