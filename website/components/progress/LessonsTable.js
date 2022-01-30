@@ -2,12 +2,14 @@ import React from "react"
 import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
 import Checkbox from "@mui/material/Checkbox"
 import ButterflyStroke from "../../static/img/butterfly-stroke.svg"
+import ButterflyStrokeWhite from "../../static/img/butterfly-stroke-white.svg"
 import ButterflyGreen from "../../static/img/butterfly-green.svg"
 import ButterflyBlue from "../../static/img/butterfly-blue.svg"
 import { add_tags_filter_listener, get_selected_tags } from "./TagsFilter"
 import { add_grade_listener, notify_grade_listeners } from "./Grade"
 import { get_current_student, add_student_listener } from "./StudentPicker"
 import all_students_progress from "@site/.docusaurus/all-students-progress-plugin/default/all-students-progress.json"
+import { useColorMode } from "@docusaurus/theme-common"
 
 const get_preview_progresses = () => {
   if (!window.preview_progresses) {
@@ -32,7 +34,13 @@ const CheckboxNotValidated = ({ lesson_slug, progress_level }) => (
   <span>
     <Checkbox
       checked={progress_level <= (get_preview_progresses()[lesson_slug] || 0)}
-      icon={<ButterflyStroke />}
+      icon={
+        useColorMode().isDarkTheme ? (
+          <ButterflyStrokeWhite />
+        ) : (
+          <ButterflyStroke />
+        )
+      }
       checkedIcon={<ButterflyBlue />}
       onChange={(e) => {
         if (get_preview_progresses()[lesson_slug] === progress_level) {
