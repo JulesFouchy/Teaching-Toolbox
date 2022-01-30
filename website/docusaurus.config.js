@@ -13,6 +13,7 @@ module.exports = async () => {
     title: user_config.title,
     url: `https://${user_config.github_account.toLowerCase()}.github.io/`,
     baseUrl: `/${user_config.repo}/`,
+    trailingSlash: true,
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "throw",
     favicon: "img/favicon.ico",
@@ -33,9 +34,9 @@ module.exports = async () => {
             path: "../../content",
             routeBasePath: "/",
             sidebarPath: require.resolve("../../sidebars.js"),
-            sidebarItemsGenerator: user_config.should_sort_lessons_by_priority ?
-                sidebarItemsGenerator :
-                undefined,
+            sidebarItemsGenerator: user_config.should_sort_lessons_by_priority
+              ? sidebarItemsGenerator
+              : undefined,
             remarkPlugins: [math],
             rehypePlugins: [katex],
           },
