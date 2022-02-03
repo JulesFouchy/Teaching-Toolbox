@@ -130,8 +130,9 @@ module.exports = async () => {
             },
           ],
           copyright:
+            (user_config.copyright_before || "") +
             `Copyright © ${new Date().getFullYear()}. Built with <a href="https://docusaurus.io/">Docusaurus</a>.` +
-              user_config.extra_copyright || "",
+            (user_config.copyright_after || ""),
         },
         prism: {
           theme: lightCodeTheme,
