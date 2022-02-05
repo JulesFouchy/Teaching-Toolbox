@@ -87,7 +87,7 @@ module.exports = async () => {
           items: [
             ...user_config.navbar_items,
             {
-              href: `https://github.com/${user_config.github_account}/${user_config.repo}/issues`,
+              href: `https://github.com/${user_config.github_account}/${user_config.repo}/issues/new/choose`,
               position: "right",
               className: "header-issues-link",
               "aria-label": "GitHub issues",
@@ -112,15 +112,15 @@ module.exports = async () => {
               items: [
                 {
                   label: "Ask a question",
-                  to: `https://github.com/${user_config.github_account}/${user_config.repo}/issues`,
+                  to: `https://github.com/${user_config.github_account}/${user_config.repo}/issues/new/choose`,
                 },
                 {
                   label: "Report a mistake",
-                  to: `https://github.com/${user_config.github_account}/${user_config.repo}/issues`,
+                  to: `https://github.com/${user_config.github_account}/${user_config.repo}/issues/new/choose`,
                 },
                 {
                   label: "Give me feedback",
-                  to: `https://github.com/${user_config.github_account}/${user_config.repo}/issues`,
+                  to: `https://github.com/${user_config.github_account}/${user_config.repo}/issues/new/choose`,
                 },
               ],
             },
