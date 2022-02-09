@@ -58,13 +58,6 @@ Either fix this tag or add it to lessons_allowed_tags in website.config.js`)
         priority: lesson_priority(lesson),
       }))
       const lessons_with_points = lessons_points(lessons_with_prio)
-      // Useful to copy-paste the full list of lessons to init a student_progress.json:
-      //   console.log(
-      //     lessons.reduce((obj, lesson) => {
-      //       obj[lesson.slug] = 0
-      //       return obj
-      //     }, {})
-      //   )
       const sorted_lessons = lessons_with_points.sort((a, b) => {
         const prio = b.priority - a.priority
         if (prio === 0) {
@@ -73,6 +66,13 @@ Either fix this tag or add it to lessons_allowed_tags in website.config.js`)
           return prio
         }
       })
+      // Useful to copy-paste the full list of lessons to init a student_progress.json:
+      //   console.log(
+      //     sorted_lessons.reduce((obj, lesson) => {
+      //       obj[lesson.slug] = 0
+      //       return obj
+      //     }, {})
+      //   )
       return {
         lessons: sorted_lessons,
         lessons_tags: allowed_tags,
