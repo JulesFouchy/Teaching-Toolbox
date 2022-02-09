@@ -12,17 +12,18 @@ import all_students_progress from "@site/.docusaurus/all-students-progress-plugi
 import { useColorMode } from "@docusaurus/theme-common"
 
 const get_preview_progresses = () => {
-  if (!window.preview_progresses) {
-    window.preview_progresses = {}
-  }
-  return window.preview_progresses
+  const item = localStorage.getItem("preview_progresses")
+  if (item) return JSON.parse(item)
+  else return {}
 }
 const set_preview_progress = (lesson_slug, progress) => {
-  get_preview_progresses()[lesson_slug] = progress
+  const preview = get_preview_progresses()
+  preview[lesson_slug] = progress
+  localStorage.setItem("preview_progresses", JSON.stringify(preview))
   notify_grade_listeners()
 }
 const clear_preview_progresses = () => {
-  window.preview_progresses = {}
+  localStorage.setItem("preview_progresses", JSON.stringify({}))
   notify_grade_listeners()
 }
 
