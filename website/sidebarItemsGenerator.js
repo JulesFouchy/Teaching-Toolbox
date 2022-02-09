@@ -1,4 +1,5 @@
 const lesson_priority = require("../grader/lesson_priority")
+const levels = require("../../levels_points.json")
 
 module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
   if (args.item.dirName === "lessons") {
@@ -13,6 +14,7 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
           easiness: doc.frontMatter.easiness,
           level: doc.frontMatter.level,
         }),
+        level: doc.frontMatter.level,
       }))
       // Sort
       .sort((a, b) => {
@@ -38,9 +40,27 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
           type: "doc",
           id: doc.id,
           prio: doc.priority,
+          level: doc.level,
         }
       })
-    return res
+    // Split in several categories
+    const categories = Object.keys(levels).map((level) => ({
+      type: "category",
+      label: `Level ${level}`,
+      level: parseInt(level),
+      items: [],
+      collapsed: true,
+    }))
+    res.forEach((doc) => {
+      if (doc.level !== undefined) {
+        categories
+          .find((category) => category.level === doc.level)
+          .items.push(doc)
+      } else {
+        console.warn(`${doc.id} doesn't belong to any level`)
+      }
+    })
+    return [res[0], ...categories]
   } else {
     return await defaultSidebarItemsGenerator(args)
   }
