@@ -2,26 +2,8 @@ const fs = require("fs")
 const fm = require("front-matter")
 const path = require("path")
 const lesson_priority = require("../../grader/lesson_priority")
-const levels_points = require("../../../levels_points.json")
 
 const difficulty = (lesson) => 6 - lesson.easiness
-
-const lessons_points = (lessons) => {
-  const level_total_difficulty = {}
-  for (let level = 1; level <= 5; ++level) {
-    level_total_difficulty[level] = lessons
-      .filter((lesson) => lesson.level === level)
-      .reduce((acc, lesson) => {
-        return acc + difficulty(lesson)
-      }, 0)
-  }
-  return lessons.map((lesson) => ({
-    ...lesson,
-    points:
-      (levels_points[lesson.level] * difficulty(lesson)) /
-      level_total_difficulty[lesson.level],
-  }))
-}
 
 module.exports = (context, options) => {
   return {
@@ -57,8 +39,7 @@ Either fix this tag or add it to lessons_allowed_tags in website.config.js`)
         ...lesson,
         priority: lesson_priority(lesson),
       }))
-      const lessons_with_points = lessons_points(lessons_with_prio)
-      const sorted_lessons = lessons_with_points.sort((a, b) => {
+      const sorted_lessons = lessons_with_prio.sort((a, b) => {
         const prio = b.priority - a.priority
         if (prio === 0) {
           return (b.bias || 0) - (a.bias || 0)

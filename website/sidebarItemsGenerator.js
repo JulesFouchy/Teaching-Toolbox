@@ -1,5 +1,5 @@
 const lesson_priority = require("../grader/lesson_priority")
-const levels = require("../../levels_points.json")
+const levels = require("../../levels.json")
 
 module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
   if (args.item.dirName === "lessons") {
@@ -44,13 +44,14 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
         }
       })
     // Split in several categories
-    const categories = Object.keys(levels).map((level) => ({
+    const categories = levels.map((level, idx) => ({
       type: "category",
-      label: `Level ${level}`,
-      level: parseInt(level),
+      label: `Level ${idx + 1} | ${level.name}`,
+      level: level.id,
       items: [],
       collapsed: true,
     }))
+    console.log(categories)
     res.forEach((doc) => {
       if (doc.level !== undefined) {
         categories

@@ -1,4 +1,4 @@
-const levels_points = require("../../levels_points.json")
+const levels = require("../../levels.json")
 
 /// Returns a number between 0 and 1 (maps range_begin to 0 and range_end to 1)
 const normalize = (x, range_begin, range_end) =>
@@ -30,7 +30,7 @@ const lesson_priority = (lesson) => {
     1,
     5
   )
-  const levels_count = Object.entries(levels_points).length
+  const levels_count = Object.entries(levels).length
   const min_prio = map((lesson.level - 1) / (levels_count - 1), 0.8, 0.0)
   const max_prio = map((lesson.level - 1) / (levels_count - 1), 1.0, 0.2)
   const relative_prio = map(absolute_prio, min_prio, max_prio)
