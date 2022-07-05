@@ -46,7 +46,7 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
     // Split in several categories
     const categories = levels.map((level, idx) => ({
       type: "category",
-      label: `Level ${idx + 1} | ${level.name}`,
+      label: `${level.name}`,
       level: level.id,
       items: [],
       collapsed: true,
@@ -59,10 +59,14 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
         if (doc.id !== "lessons/introduction")
         {
           console.warn(`${doc.id} doesn't belong to any level`)
+          categories.push(doc)
         }
       }
     })
-    return [res[0], ...categories]
+    return [
+      res[0], // Introduction lesson
+      ...categories,
+    ]
   } else {
     return await defaultSidebarItemsGenerator(args)
   }
