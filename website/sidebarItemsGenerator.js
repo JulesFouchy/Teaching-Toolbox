@@ -51,15 +51,15 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
       items: [],
       collapsed: true,
     }))
-    console.log(categories)
     res.forEach((doc) => {
-      if (doc.level !== undefined) {
-        (categories
-          .find((category) => category.level === doc.level) 
-          || categories[0]) // TODO remove the || categories[0] This is just a quick fix while not all lessons have a level
-          .items.push(doc)
+      const category = categories.find((category) => category.level === doc.level)
+      if (category) {
+        category.items.push(doc)
       } else {
-        console.warn(`${doc.id} doesn't belong to any level`)
+        if (doc.id !== "lessons/introduction")
+        {
+          console.warn(`${doc.id} doesn't belong to any level`)
+        }
       }
     })
     return [res[0], ...categories]
