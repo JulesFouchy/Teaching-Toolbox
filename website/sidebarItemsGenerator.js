@@ -52,12 +52,13 @@ module.exports = async function ({ defaultSidebarItemsGenerator, ...args }) {
       collapsed: true,
     }))
     res.forEach((doc) => {
-      const category = categories.find((category) => category.level === doc.level)
+      const category = categories.find(
+        (category) => category.level === doc.level
+      )
       if (category) {
         category.items.push(doc)
       } else {
-        if (doc.id !== "lessons/introduction")
-        {
+        if (doc.id !== "lessons/introduction") {
           console.warn(`${doc.id} doesn't belong to any level`)
           categories.push(doc)
         }

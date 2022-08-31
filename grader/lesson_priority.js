@@ -1,16 +1,11 @@
 const levels = require("../../levels.json")
 
-/// Returns a number between 0 and 1 (maps range_begin to 0 and range_end to 1)
-const normalize = (x, range_begin, range_end) =>
-  (x - range_begin) / (range_end - range_begin)
-/// Expects x in the [0, 1] range and returns a number in [range_begin, range_end]
-const map = (x, range_begin, range_end) =>
-  x * (range_end - range_begin) + range_begin
-
 const validate = (name, lesson) => {
   const value = lesson[name]
   if (![1, 2, 3, 4, 5].includes(value)) {
-    console.error(`Invalid '${name}' value : ${value}, for lesson '${lesson.title}'`)
+    console.error(
+      `Invalid '${name}' value : ${value}, for lesson '${lesson.title}'`
+    )
     return false
   } else {
     return true
@@ -18,7 +13,7 @@ const validate = (name, lesson) => {
 }
 
 const validate_level = (level) => {
-  return levels.find(lvl => lvl.id === level) !== undefined
+  return levels.find((lvl) => lvl.id === level) !== undefined
 }
 
 const lesson_priority = (lesson) => {
@@ -29,16 +24,8 @@ const lesson_priority = (lesson) => {
   ) {
     return -1
   }
-  const absolute_prio = normalize(
-    lesson.benefit * 0.75 + lesson.easiness * 0.25,
-    1,
-    5
-  )
-  const levels_count = Object.entries(levels).length
-  const min_prio = map((lesson.level - 1) / (levels_count - 1), 0.8, 0.0)
-  const max_prio = map((lesson.level - 1) / (levels_count - 1), 1.0, 0.2)
-  const relative_prio = map(absolute_prio, min_prio, max_prio)
-  return relative_prio
+  const absolute_prio = lesson.benefit * 0.75 + lesson.easiness * 0.25
+  return absolute_prio
 }
 
 module.exports = lesson_priority
