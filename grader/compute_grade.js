@@ -1,4 +1,4 @@
-import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
+import lessons from "@site/.docusaurus/plugin--lessons-list/default/lessons.json"
 
 export default (lessons_progress) => {
   return lessons.reduce(

@@ -60,8 +60,8 @@ module.exports = async () => {
     ],
 
     plugins: [
-      "./lessons-list-plugin",
-      "./all-students-progress-plugin",
+      "./plugin--lessons-list",
+      "./plugin--all-students",
       "@docusaurus/plugin-ideal-image",
       "docusaurus-plugin-includes",
       [

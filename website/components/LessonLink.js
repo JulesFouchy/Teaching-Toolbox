@@ -1,5 +1,5 @@
 import React from "react"
-import lessons from "@site/.docusaurus/lessons-list-plugin/default/lessons.json"
+import lessons from "@site/.docusaurus/plugin--lessons-list/default/lessons.json"
 
 export default function LessonLink({ slug, text, anchor }) {
   const lesson = lessons.find((lesson) => lesson.slug === slug)
