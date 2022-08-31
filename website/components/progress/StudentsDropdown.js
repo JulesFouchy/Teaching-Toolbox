@@ -24,7 +24,7 @@ export default ({}) => (
               history.replace(`./${name}`)
             }}
             value={student_name}
-            placeholder="Select your name"
+            placeholder="Who are you? 👀"
           />
         </div>
       )
