@@ -13,3 +13,5 @@ https://youtu.be/Unzc731iCUY
             timeStamp: 393,
             comment: [h('b', {}, "Build a fence"), h('span', {}, " : explicit what your idea is not, why it differs from similar ideas.")]
         },
+
+[Great conference about how to teach, by Ólafur Waage. "Learning Rust the wrong way"](https://www.youtube.com/watch?v=DL9LANLg5EA&ab_channel=NDCConferences)
