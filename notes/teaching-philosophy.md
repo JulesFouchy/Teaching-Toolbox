@@ -7,3 +7,7 @@ This kinda implies that lectures are bad because they imply to give the same con
 ## Dual edge contract
 
 Students will learn from the teacher, and the teacher will learn from students. We are all here for the same reason, because we want to share and learn more. Ex : 
+
+## 
+
+If I notice students that are getting behind in their project, go talk to them, see if they need something to start making progress, see if they have a particular problem and if I can do something to help them (cf Fady).
