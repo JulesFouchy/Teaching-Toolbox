@@ -6,7 +6,7 @@ module.exports = (context, options) => {
     name: "plugin--all-students",
 
     async loadContent() {
-      const files_dir = path.join(context.siteDir, "../../content/progress")
+      const files_dir = path.join(context.siteDir, "../../content/evaluation")
       const files = fs.readdirSync(files_dir)
 
       return {
