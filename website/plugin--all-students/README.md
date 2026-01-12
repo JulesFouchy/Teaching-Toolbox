@@ -1,1 +1,0 @@
-This is a Docusaurus plugin that grabs all the files in *content/progress* and generates an array containing all the file names.

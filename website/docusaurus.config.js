@@ -61,7 +61,6 @@ module.exports = async () => {
 
     plugins: [
       "./plugin--lessons-list",
-      "./plugin--all-students",
       "@docusaurus/plugin-ideal-image",
       "docusaurus-plugin-includes",
       [
